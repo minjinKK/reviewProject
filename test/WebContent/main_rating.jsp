@@ -1,5 +1,12 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import ="project.com.model.ScoreVO" %>
+<%
+   ArrayList<ScoreVO> slist = (ArrayList<ScoreVO>) request.getAttribute("list");
+%>
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +41,7 @@
 									<nav>
 										<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 											<a class="nav-item nav-link active" id="nav-home-tab"
-												data-toggle="tab" href="#nav-home" role="tab"
+												data-toggle="tab" href="rateTotal.do" role="tab"
 												aria-controls="nav-home" aria-selected="true">총점</a> <a
 												class="nav-item nav-link" id="nav-profile-tab"
 												data-toggle="tab" href="#nav-profile" role="tab"
@@ -69,15 +76,15 @@
 							</div>
 								<!--  -->
 								<%
-									for (int i = 0; i < 4; i++) {
-								%>
+									for (ScoreVO vo : slist) { 	int i=0;
+									%>
 								<div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
 										<a href="single.html" class="img img-2"
-											style="background-image: url(./Resouces/images/image_<%=i + 1%>.jpg);"><%=i + 1%></a>
+											style="background-image: url(./Resouces/images/image_<%=i+1%>.jpg);"><%=i + 1%></a>
 										<div class="text text-2 pl-md-4">
 											<h3 class="mb-2">
-												<a href="single.html">식당이름<%=i%></a>
+												<a href="single.html">식당이름<%= vo.getPname() %></a>
 											</h3>
 											<div class="meta-wrap">
 												<p class="meta">
